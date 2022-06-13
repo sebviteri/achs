@@ -48,7 +48,7 @@ def descarga_de_sql_server(query:str, server_url:str='ACHS-AUTMDBAZ.achs.cl', da
         Database={database};
         Trusted_Connection=yes;
         """
-    if (user is not None) & (password is not None):
+    if (username is not None) & (password is not None):
         sql_conn_str = f"""
             Driver={{SQL Server}};
             Server={server_url};
@@ -56,8 +56,6 @@ def descarga_de_sql_server(query:str, server_url:str='ACHS-AUTMDBAZ.achs.cl', da
             UID={username};
             PWD={password}
             """
-
-
 
     ini_ahora = pd.to_datetime('today').strftime('%Y-%m-%d %H:%M:%S')
     print(f"Inicio descarga desde SQL = {ini_ahora}")
@@ -82,3 +80,25 @@ def descarga_de_sql_server(query:str, server_url:str='ACHS-AUTMDBAZ.achs.cl', da
         print(f"ERROR: Falla descarga de datos SQL por: {e}")
         return None
         
+
+
+
+def load_csvs_into_df(path, prefix='', file_ext='csv', encoding='utf-8'):
+    """ 
+    Carga todos los archivos .csv que existan en una carpeta y los convierte en un dataframe
+    """
+    csv_files = glob.glob(os.path.join(path, f"*.{file_ext}"))
+    print(f"Cantidad de archivos a compilar = {len(csv_files)}")
+    df = pd.DataFrame()
+    for f in csv_files:
+        filename = f.split("/")[-1].replace(f'.{file_ext}', '')
+        this_df = pd.read_csv(f, encoding=encoding)
+        this_df['filename'] = filename
+        df = pd.concat([df, this_df])
+    
+    df = df.reset_index(drop=True)
+    print(f"{df.shape = }")
+
+    return df
+
+    
