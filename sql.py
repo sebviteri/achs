@@ -1,12 +1,4 @@
-############ PARA LIMPIEZAS ############
-import pandas as pd
 
-def limpia_nombre_cols(df):
-    """
-    Limpia nombre de columnas, dejando todo en minúsculas, con guión bajo en vez de espacios, y sin tildes ni caracteres no ASCII
-    """
-    df.columns = df.columns.str.lower().str.strip().str.replace(" ", "_").str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
-    return df
 
 
 ############ PARA SQL ############
@@ -14,7 +6,7 @@ import pandas as pd
 import pyodbc
 import typing
 
-def carga_query(filepath:str) -> str:
+def carga_query_desde_archivo(filepath:str) -> str:
     """Carga una query desde un archivo .sql a un objeto string de python
 
     Args:
