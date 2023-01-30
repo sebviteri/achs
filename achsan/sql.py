@@ -1,12 +1,13 @@
+### PARA SQL #############################
+# Funciones para trabajar con SQL legado 
+# de ACHS
+##########################################
 
-
-
-############ PARA SQL ############
 import pandas as pd
 import pyodbc
 import typing
 
-def carga_query_desde_archivo(filepath:str) -> str:
+def carga_query_desde_archivo(filepath: str) -> str:
     """Carga una query desde un archivo .sql a un objeto string de python
 
     Args:
@@ -23,7 +24,7 @@ def carga_query_desde_archivo(filepath:str) -> str:
 
 
 
-def descarga_de_sql_server(query:str, server_url:str='ACHS-AUTMDBAZ.achs.cl', database:str='az-cdg', username=None, password=None) -> typing.Union[None, pd.DataFrame]:
+def descarga_de_sql_server(query: str, server_url: str = 'ACHS-AUTMDBAZ.achs.cl', database: str = 'az-cdg', username = None, password = None) -> typing.Union[None, pd.DataFrame]:
     """Conecta a un servidor SQL de ACHS
 
     Args:
