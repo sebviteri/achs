@@ -1,7 +1,12 @@
-############ PARA LIMPIEZAS ############
-import pandas as pd
+### PARA LIMPIEZAS #######################
+# Funciones para limpiar datos de pandas
+# o PySpark
+##########################################
 
-def limpia_nombre_cols(df):
+import pandas as pd
+import typing
+
+def limpia_nombre_cols(df: pd.DataFrame) -> typing.Union[None, pd.DataFrame]:
     """
     Limpia nombre de columnas, dejando todo en minúsculas, con guión bajo en vez de espacios, y sin tildes ni caracteres no ASCII
     """
