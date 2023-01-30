@@ -5,7 +5,7 @@ setup(
     version='0.1',
     description='Utilidades para ACHS Analytics',
     author='Sebastian Viteri',
-    author_email='gward@python.net',
+    author_email='sviteriv@achs.cl',
     packages=find_packages(),
     install_requires=['pandas'],
 
